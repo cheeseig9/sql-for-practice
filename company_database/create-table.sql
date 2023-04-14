@@ -16,6 +16,8 @@ CREATE TABLE branch (
   mgr_start_date DATE,
   FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
 );
+-- ON DELETE SET NULL means if employee is deleted,
+-- the branch table of mgr_id shows NULL
 
 ALTER TABLE employee
 ADD FOREIGN KEY(branch_id)
@@ -50,3 +52,5 @@ CREATE TABLE branch_supplier (
   PRIMARY KEY(branch_id, supplier_name),
   FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE
 );
+-- ON DELETE CASCADE means if delete branch
+-- the branch_supplier will be deleted if the branch was deleted 
